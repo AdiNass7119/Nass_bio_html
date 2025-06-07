@@ -22,6 +22,27 @@
       color: #ff4c4c;
     }
 
+    .navbar-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .navbar-button {
+      background-color: #ff4c4c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 18px;
+      cursor: pointer;
+      font-size: 1em;
+      margin-left: 8px;
+      transition: background 0.2s;
+    }
+
+    .navbar-button:hover {
+      background-color: #e60000;
+    }
+
     .hero {
       background: linear-gradient(to right, #990000, #000);
       text-align: center;
@@ -89,8 +110,9 @@
       background-color: #1a1a1a;
       padding: 20px;
       border-radius: 10px;
-      width: 300px;
+      width: 320px;
       box-shadow: 0 0 15px red;
+      position: relative;
     }
 
     .modal-content h3 {
@@ -99,14 +121,15 @@
       text-align: center;
     }
 
-    .modal-content input {
+    .modal-content input, .modal-content textarea {
       width: 100%;
-      padding: 10px 0px 10px 0px;
+      padding: 10px 0px 10px 8px;
       margin: 10px 0px;
       border-radius: 5px;
       border: 1px solid #444;
       background-color: #000;
       color: #fff;
+      box-sizing: border-box;
     }
 
     .modal-content button {
@@ -117,10 +140,26 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      font-size: 1em;
+    }
+
+    .modal-content button:hover {
+      background-color: #e60000;
     }
 
     .modal-bg.show {
       display: flex;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      color: #fff;
+      font-size: 1.4em;
+      cursor: pointer;
+      font-weight: bold;
+      z-index: 10;
     }
   </style>
 </head>
@@ -128,7 +167,10 @@
 <body>
   <div class="navbar">
     <h3>Fintech Portal</h3>
-    <span style="cursor: pointer;" onclick="document.getElementById('loginModal').classList.add('show')">Login</span>
+    <div class="navbar-buttons">
+      <button class="navbar-button" id="loginBtn">Login</button>
+      <button class="navbar-button" id="registerBtn">Register</button>
+    </div>
   </div>
 
   <section class="hero">
@@ -200,17 +242,73 @@
     </div>
   </section>
 
-  <div class="modal-bg" id="loginModal" onclick="if(event.target === this) this.classList.remove('show')">
+  <div class="modal-bg" id="loginModal">
     <div class="modal-content">
-      <form action="main.html">
+      <span class="close-modal" onclick="closeModal('loginModal')">&times;</span>
+      <form id="loginForm">
         <h3>Login</h3>
-        <input type="email" name="email" placeholder="Enter your email" required>
+        <input type="text" name="username" placeholder="Enter your username" required>
         <input type="password" name="password" placeholder="Enter your password" required>
         <button type="submit">Login</button>
       </form>
     </div>
   </div>
 
+  <div class="modal-bg" id="registerModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('registerModal')">&times;</span>
+      <form id="registerForm">
+        <h3>Register</h3>
+        <input type="text" name="fullname" placeholder="Full Name*" required>
+        <input type="text" name="username" placeholder="Username*" required>
+        <input type="password" name="password" placeholder="Password*" required>
+        <input type="password" name="confirm_password" placeholder="Confirm Password*" required>
+        <input type="email" name="email" placeholder="Email*" required>
+        <input type="text" name="aadhar" placeholder="Aadhar Number*" required>
+        <input type="text" name="pan" placeholder="PAN Number*" required>
+        <textarea name="address" placeholder="Address*" required></textarea>
+        <input type="tel" name="mobile" placeholder="Mobile Number*" required>
+        <input type="tel" name="alt_mobile" placeholder="Alternate Mobile Number (Optional)">
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('show');
+    }
+
+    document.getElementById('loginBtn').onclick = function () {
+      document.getElementById('loginModal').classList.add('show');
+    };
+
+    document.getElementById('registerBtn').onclick = function () {
+      document.getElementById('registerModal').classList.add('show');
+    };
+
+    document.querySelectorAll('.modal-bg').forEach(function (modal) {
+      modal.onclick = function (e) {
+        if (e.target === modal) modal.classList.remove('show');
+      };
+    });
+
+    document.getElementById('loginForm').onsubmit = function (e) {
+      e.preventDefault();
+      alert('Login successful!');
+      setTimeout(function () {
+        window.location.href = 'Mainpage final.html';
+      }, 100);
+    };
+
+    document.getElementById('registerForm').onsubmit = function (e) {
+      e.preventDefault();
+      alert('Registration successful!');
+      setTimeout(function () {
+        window.location.href = 'Mainpage final.html';
+      }, 100);
+    };
+  </script>
 </body>
 
 </html>

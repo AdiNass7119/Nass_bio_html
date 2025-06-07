@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fintech - Human Style</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+    .hero {
+      height: 100vh;
+      background: linear-gradient(to right, #890707, #2e2e2e);
+      padding: 100px 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    section h3,
+    h2,
+    h4,
+    p {
+      color: #f5f5f5;
+    }
+
+    footer {
+      font-size: 0.9rem;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .feature-card {
+      transition: transform 0.3s ease;
+      border-radius: 12px;
+      background-color: #1a1a1a;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 24px rgb(156, 2, 2);
+    }
+
+    .modal-content {
+      background-color: #1a0b0b;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+    <a class="navbar-brand" href="#">FINTECH</a>
+  </nav>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 py-3">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"></a>
+      <div class="d-flex ms-auto">
+        <a href="#" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero d-flex align-items-center justify-content-center text-center text-white">
+    <div>
+      <h1 class="display-4">Pay your bills. Earn rewards.</h1>
+      <p class="lead">Join Fintech and take control of your easy life.</p>
+      <button class="btn btn-primary mt-3" id="joinBtn" onclick="handleJoin(this)">Join Now</button>
+      <p id="successMsg" class="mt-3 text-success" style="display: none;">You have successfully joined Fintech!</p>
+    </div>
+  </section>
+
+  <section class="container py-5">
+    <div class="row text-center">
+      <div class="col-md-4">
+        <h3>Monitor Fintech Score</h3>
+        <p>Track your Fintech score in real-time and receive insights on how to improve it.</p>
+      </div>
+      <div class="col-md-4">
+        <h3>Pay Fintech Bills</h3>
+        <p>Pay your Fintech card bills on time and earn exclusive cashback and rewards.</p>
+      </div>
+      <div class="col-md-4">
+        <h3>Win Rewards</h3>
+        <p>Redeem your points on top brands, offers, and exciting cashback deals.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5" style="background-color:#111;">
+    <div class="container">
+      <h2 class="text-center mb-5">Our Features</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="card feature-card text-center shadow-sm h-100" data-bs-toggle="modal" data-bs-target="#payBillsModal">
+            <div class="card-body">
+              <h4 class="card-title">Pay Bills</h4>
+              <p class="card-text">Easily pay your credit card bills and never miss a due date again.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card feature-card text-center shadow-sm h-100" data-bs-toggle="modal" data-bs-target="#scoreModal">
+            <div class="card-body">
+              <h4 class="card-title">Fintech Score</h4>
+              <p class="card-text">Track and improve your credit score with real-time updates and tips.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card feature-card text-center shadow-sm h-100" data-bs-toggle="modal" data-bs-target="#rewardsModal">
+            <div class="card-body">
+              <h4 class="card-title">Rewards</h4>
+              <p class="card-text">Earn points for every bill paid and redeem them for premium rewards.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card feature-card text-center shadow-sm h-100" data-bs-toggle="modal" data-bs-target="#offersModal">
+            <div class="card-body">
+              <h4 class="card-title">Exclusive Offers</h4>
+              <p class="card-text">Get access to curated deals, discounts, and cashback offers on your favorite brands.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modals -->
+  <div class="modal fade" id="payBillsModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pay Your Bills</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <ul>
+            <li>Electricity Bills</li>
+            <li>Water Bills</li>
+            <li>Gas Bills</li>
+            <li>Broadband & Mobile</li>
+            <li>Credit Card Payments</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="scoreModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Fintech Score Insights</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Your Fintech score reflects your financial health. Tips:</p>
+          <ul>
+            <li>Pay bills on time</li>
+            <li>Maintain low credit utilization</li>
+            <li>Monitor credit reports monthly</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="rewardsModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Your Rewards</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>You can redeem rewards on:</p>
+          <ul>
+            <li>Amazon Gift Cards</li>
+            <li>Discounted Movie Tickets</li>
+            <li>Dining Offers</li>
+            <li>Travel Cashback</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="offersModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Exclusive Offers</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Top deals for you:</p>
+          <ul>
+            <li>Flat 20% off on Swiggy</li>
+            <li>Up to ₹500 cashback on Zomato</li>
+            <li>Buy 1 Get 1 on BookMyShow</li>
+            <li>Bank-specific offers on Flipkart</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div class="modal fade" id="registerModal" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel">Register</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter your name">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter your email">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirm Password</label>
+              <input type="password" class="form-control" id="confirmPassword" placeholder="Re-enter password">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Gender</label><br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                <label class="form-check-label" for="male">Male</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                <label class="form-check-label" for="female">Female</label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const sections = document.querySelectorAll('section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+          }
+        });
+      }, { threshold: 0.3 });
+
+      sections.forEach(section => observer.observe(section));
+    });
+
+    function handleJoin(button) {
+      button.innerText = "Joined!";
+      button.disabled = true;
+      document.getElementById('successMsg').style.display = 'block';
+    }
+  </script>
+</body>
+
+</html>
